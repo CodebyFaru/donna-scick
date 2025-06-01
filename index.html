@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KD Boutique | Luxury Bags & Shoes</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    :root {
+      --primary: #2c1e1e;
+      --secondary: #c8a97e;
+      --light: #f9f5f0;
+      --accent: #e74c3c;
+      --dark: #1a1a1a;
+      --transition: all 0.4s ease;
+    }
+
+    body {
+      background-color: var(--light);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* Header & Navigation */
+    header {
+      background-color: var(--light);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 0 5%;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 50px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav li {
+      margin: 0 15px;
+      position: relative;
+    }
+
+    nav a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 5px;
+      transition: var(--transition);
+      font-size: 17px;
+    }
+
+    nav a:hover {
+      color: var(--secondary);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--secondary);
+      transition: var(--transition);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .cart-icon {
+      position: relative;
+      font-size: 22px;
+      color: var(--primary);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .cart-icon:hover {
+      color: var(--secondary);
+    }
+
+    .cart-counter {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--accent);
+      color: white;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      font-size: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--primary);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6));
+    }
+    
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: white;
+      padding: 2rem;
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 300;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      line-height: 1.8;
+      max-width: 600px;
+      margin: 0 auto 30px;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--secondary);
+      color: var(--light);
+      padding: 14px 32px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn:hover {
+      background: #b8966a;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Section Styling */
+    section {
+      padding: 100px 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 70px;
+      position: relative;
+    }
+
+    .section-header h2 {
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--primary);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    .section-header p {
+      color: #777;
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .section-header::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: var(--secondary);
+      margin: 25px auto;
+    }
+
+    /* Featured Products - Centered */
+    .featured-products {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-top: 30px;
+    }
+
+    /* Products Grid */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 40px;
+      margin-top: 30px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+
+    .product:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      z-index: 2;
+    }
+
+    .badge-limited {
+      background: var(--accent);
+      color: white;
+    }
+
+    .badge-stock {
+      background: #e67e22;
+      color: white;
+    }
+
+    .product-image {
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f9f9f9;
+    }
+
+    .product-image img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      transition: var(--transition);
+    }
+
+    .product:hover .product-image img {
+      transform: scale(1.05);
+    }
+
+    .product-info {
+      padding: 25px;
+    }
+
+    .product h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .product p {
+      color: #777;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    .product-price {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 15px 0;
+    }
+
+    .product-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .cart-btn {
+      flex-grow: 1;
+      background: var(--secondary);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .cart-btn:hover {
+      background: #b8966a;
+    }
+
+    .view-btn {
+      width: 45px;
+      height: 45px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-left: 10px;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .view-btn:hover {
+      background: #3a2a2a;
+    }
+
+    /* Product Detail Modal */
+    .product-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 1000px;
+      max-height: 90vh;
+      overflow: auto;
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 28px;
+      color: #777;
+      cursor: pointer;
+      background: none;
+      border: none;
+      z-index: 10;
+      transition: var(--transition);
+    }
+
+    .close-modal:hover {
+      color: var(--accent);
+    }
+
+    .modal-image {
+      flex: 1;
+      min-width: 300px;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f9f9f9;
+    }
+
+    .modal-image img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+
+    .modal-info {
+      flex: 1;
+      min-width: 300px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .modal-info h3 {
+      font-size: 28px;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+
+    .modal-price {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 15px 0;
+    }
+
+    .modal-description {
+      margin: 20px 0;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    .modal-stats {
+      display: flex;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .stat-item {
+      background: #f5f5f5;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    /* Contact Section */
+    #contacto {
+      background: linear-gradient(rgba(44, 30, 30, 0.9), rgba(44, 30, 30, 0.9));
+      color: white;
+      text-align: center;
+      border-radius: 15px;
+      margin: 50px 5% 0;
+      padding: 80px 5%;
+    }
+
+    .contact-info {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .contact-info p {
+      margin: 20px 0;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: var(--secondary);
+      border-radius: 50%;
+      color: white;
+      font-size: 20px;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .social-links a:hover {
+      background: #b8966a;
+      transform: translateY(-5px);
+    }
+
+    /* Cart Modal */
+    #cartModal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border-radius: 15px;
+      width: 95%;
+      max-width: 500px;
+      max-height: 80vh;
+      overflow-y: auto;
+      z-index: 2000;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      padding: 30px;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .cart-header h3 {
+      font-size: 24px;
+      color: var(--primary);
+    }
+
+    .close-cart {
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #777;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .close-cart:hover {
+      color: var(--accent);
+    }
+
+    .cart-items {
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .cart-item-image {
+      width: 70px;
+      height: 70px;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-right: 15px;
+      background: #f9f9f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cart-item-image img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+
+    .cart-item-details {
+      flex-grow: 1;
+    }
+
+    .cart-item-name {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .cart-item-price {
+      color: var(--secondary);
+      font-weight: 600;
+    }
+
+    .cart-item-remove {
+      background: none;
+      border: none;
+      color: #999;
+      cursor: pointer;
+      font-size: 18px;
+      transition: var(--transition);
+    }
+
+    .cart-item-remove:hover {
+      color: var(--accent);
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 20px;
+      font-weight: 700;
+      padding: 20px 0;
+      border-top: 2px solid #eee;
+      margin-top: 10px;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      padding: 15px;
+      background: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 15px;
+    }
+
+    .checkout-btn:hover {
+      background: #b8966a;
+    }
+
+    /* Notification */
+    .notification {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #27ae60;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 8px;
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .notification.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .notification i {
+      margin-right: 10px;
+      font-size: 20px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 100px;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+
+    .copyright {
+      color: #aaa;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 3rem;
+      }
+      
+      .modal-content {
+        flex-direction: column;
+      }
+      
+      .modal-image {
+        height: 300px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-container {
+        padding: 15px;
+      }
+      
+      nav ul {
+        display: none;
+      }
+      
+      .hamburger {
+        display: block;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .section-header h2 {
+        font-size: 2.2rem;
+      }
+      
+      .products {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero {
+        height: 70vh;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .btn {
+        padding: 12px 25px;
+      }
+      
+      .modal-info {
+        padding: 25px;
+      }
+      
+      .modal-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <a href="#" class="logo"><img src="KDLOGO.PNG" alt="KD Logo"></a>
+      <nav>
+        <ul>
+          <li><a href="#bolsos">Bolsos</a></li>
+          <li><a href="#zapatos">Zapatos</a></li>
+          <li><a href="#destacados">Destacados</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="cart-icon" onclick="openCart()">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-counter" id="cartCounter">0</span>
+      </div>
+      <div class="hamburger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="KD.mp4" type="video/mp4">
+      Tu navegador no soporta video HTML5.
+    </video>
+    <div class="hero-content">
+      <h1>Bienvenido a tienda Donna Scick</h1>
+      <p>Moda exclusiva. Estilo atemporal. Compra directamente por WhatsApp.</p>
+      <a class="btn" href="https://wa.me/8095494893" target="_blank">Contactar por WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- Bolsos Section -->
+  <section id="bolsos">
+    <div class="section-header">
+      <h2>Colección de Bolsos</h2>
+      <p>Nuestra exclusiva selección de bolsos combina artesanía excepcional con diseño moderno para la mujer contemporánea.</p>
+    </div>
+    <div class="products">
+      <!-- Bolso 1 -->
+      <div class="product">
+        <div class="product-badge badge-limited">Limited Edition</div>
+        <div class="product-image" onclick="openProductModal('Bolso KD', 30000, 'Bolso de diseñador con detalles exclusivos', 'Bolsos', 'purse100.png')">
+          <img src="purse100.png" alt="Bolso KD">
+        </div>
+        <div class="product-info">
+          <h3>Bolso KD</h3>
+          <p>Bolso de diseñador con detalles exclusivos</p>
+          <div class="product-price">RD$ 30,000</div>
+          <div class="product-actions">
+            <button class="cart-btn" onclick="addToCart('Bolso KD', 30000)">Añadir al carrito</button>
+            <button class="view-btn" onclick="openProductModal('Bolso KD', 30000, 'Bolso de diseñador con detalles exclusivos', 'Bolsos', 'Purse100.png')">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bolso 2 -->
+      <div class="product">
+        <div class="product-badge badge-stock">Últimas unidades</div>
+        <div class="product-image" onclick="openProductModal('Mini Clutch', 40000, 'Bolso pequeño para eventos especiales', 'Bolsos', 'purse400.png')">
+          <img src="purse400.png" alt="Mini Clutch">
+        </div>
+        <div class="product-info">
+          <h3>Mini Clutch</h3>
+          <p>Bolso pequeño para eventos especiales</p>
+          <div class="product-price">RD$ 40,000</div>
+          <div class="product-actions">
+            <button class="cart-btn" onclick="addToCart('Mini Clutch', 40000)">Añadir al carrito</button>
+            <button class="view-btn" onclick="openProductModal('Mini Clutch', 40000, 'Bolso pequeño para eventos especiales', 'Bolsos', 'Purse400.png')">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bolso 3 -->
+      <div class="product">
+        <div class="product-image" onclick="openProductModal('Hombro Elegante', 40000, 'Bolso de hombro con estilo elegante', 'Bolsos', 'purse80.png')">
+          <img src="purse80.png" alt="Hombro Elegante">
+        </div>
+        <div class="product-info">
+          <h3>Hombro Elegante</h3>
+          <p>Bolso de hombro con estilo elegante</p>
+          <div class="product-price">RD$ 40,000</div>
+          <div class="product-actions">
+            <button class="cart-btn" onclick="addToCart('Hombro Elegante', 40000)">Añadir al carrito</button>
+            <button class="view-btn" onclick="openProductModal('Hombro Elegante', 40000, 'Bolso de hombro con estilo elegante', 'Bolsos', 'Purse80.png')">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bolso 4 -->
+      <div class="product">
+        <div class="product-badge badge-limited">Edición Limitada</div>
+        <div class="product-image" onclick="openProductModal('Tote Urbana', 40000, 'Bolso grande con múltiples compartimentos', 'Bolsos', 'purse300.png')">
+          <img src="purse300.png" alt="Tote Urbana">
+        </div>
+        <div class="product-info">
+          <h3>Tote Urbana</h3>
+          <p>Bolso grande con múltiples compartimentos</p>
+          <div class="product-price">RD$ 40,000</div>
+          <div class="product-actions">
+            <button class="cart-btn" onclick="addToCart('Tote Urbana', 40000)">Añadir al carrito</button>
+            <button class="view-btn" onclick="openProductModal('Tote Urbana', 40000, 'Bolso grande con múltiples compartimentos', 'Bolsos', 'purse300.png')">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bolso 5 -->
+      <div class="product">
+        <div class="product-image" onclick="openProductModal('Crossbody Classic', 50000, 'Bolso cruzado con estilo clásico', 'Bolsos', 'Purse5.png')">
+          <img src="Purse5.png" alt="Crossbody Classic">
+        </div>
+        <div class="product-info">
+          <h3>Crossbody Classic</h3>
+          <p>Bolso cruzado con estilo clásico</p>
+          <div class="product-price">RD$ 50,000</div>
+          <div class="product-actions">
+            <button class="cart-btn" onclick="addToCart('Crossbody Classic', 50000)">Añadir al carrito</button>
+            <button class="view-btn" onclick="openProductModal('Crossbody Classic', 50000, 'Bolso cruzado con estilo clásico', 'Bolsos', 'Purse5.png')">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bolso 6 -->
+      <div class="product">
+        <div class="product-badge badge-stock">Últimas unidades</div>
+        <div class="product-image" onclick="openProductModal('Bolso Diario', 50000, 'Bolso perfecto para uso diario', 'Bolsos', 'Purse6.png')">
+          <img src="Purse6.png" alt="Bolso Diario">
+        </div>
+        <div class="product-info">
+          <h3>Bolso Diario</h3>
+          <p>Bolso perfecto para uso diario</p>
+          <div class="product-price">RD$ 50,000</div>
+          <div class="product-actions">
+            <button class="cart-btn" onclick="addToCart('Bolso Diario', 50000)">Añadir al carrito</button>
+            <button class="view-btn" onclick="openProductModal('Bolso Diario', 50000, 'Bolso perfecto para uso diario', 'Bolsos', 'Purse6.png')">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bolso 7 -->
+      <div class="product">
+        <div class="product-image" onclick="openProductModal('Mini Lujo', 45000, 'Bolso pequeño con detalles de lujo', 'Bolsos', 'Purse7.png')">
+          <img src="Purse7.png" alt="Mini Lujo">
+        </div>
+        <div class="product-info">
+          <h3>Mini Lujo</h3>
+          <p>Bolso pequeño con detalles de lujo</p>
+          <div class="product-price">RD$ 45,000</div>
+          <div class="product-actions">
+            <button class="cart-btn" onclick="addToCart('Mini Lujo', 45000)">Añadir al carrito</button>
+            <button class="view-btn" onclick="openProductModal('Mini Lujo', 45000, 'Bolso pequeño con detalles de lujo', 'Bolsos', 'Purse7.png')">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bolso 8 -->
+      <div class="product">
+        <div class="product-badge badge-limited">Limited Edition</div>
+        <div class="product-image" onclick="openProductModal('Bolso Elegante', 45000, 'Bolso de cuero italiano con detalles dorados', 'Bolsos', 'Purse90.png')">
+          <img src="purse90.png" alt="Bolso Elegante">
+        </div>
+        <div class="product-info">
+          <h3>Bolso Elegante</h3>
+          <p>Bolso de cuero italiano con detalles dorados</p>
+          <div class="product-price">RD$ 45,000</div>
+          <div class="product-actions">
+            <button class="cart-btn" onclick="addToCart('Bolso Elegante', 45000)">Añadir al carrito</button>
+            <button class="view-btn" onclick="openProductModal('Bolso Elegante', 45000, 'Bolso de cuero italiano con detalles dorados', 'Bolsos', 'purse90.png')">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Zapatos Section -->
+  <section id="zapatos">
+    <div class="section-header">
+      <h2>Colección de Zapatos</h2>
+      <p>Zapatos que combinan comodidad y estilo, diseñados para realzar tu elegancia en cada paso.</p>
+    </div>
+    <div class="products">
+      <!-- Zapato 1 -->
+      <div class="product">
+        <div class="product-badge badge-limited">Nueva Colección</div>
+        <div class="product-image" onclick="openProductModal('Tennis KD', 12000, 'Zapatillas deportivas con estilo urbano', 'Zapatos', 'Shoes04.png')">
+          <img src="Shoes04.png" alt="Tennis KD">
+        </div>
+        <div class="product-info">
+          <h3>Tennis KD</h3>
+          <p>Zapatillas deportivas con estilo urbano</p>
+          <div class="product-price">RD$ 12,000</div>
+          <div class="product-actions">
+            <button class="cart-btn" onclick="addToCart('Tennis KD', 12000)">Añadir al carrito</button>
+            <button class="view-btn" onclick="openProductModal('Tennis KD', 12000, 'Zapatillas deportivas con estilo urbano', 'Zapatos', 'Shoes04.png')">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Zapato 2 -->
+      <div class="product">
+        <div class="product-image" onclick="openProductModal('Urbanos KD', 15000, 'Zapatos urbanos para el día a día', 'Zapatos', 'z70.png')">
+          <img src="z70.png" alt="Urbanos KD">
+        </div>
+        <div class="product-info">
+          <h3>Urbanos KD</h3>
+          <p>Zapatos urbanos para el día a día</p>
+          <div class="product-price">RD$ 15,000</div>
+          <div class="product-actions">
+            <button class="cart-btn" onclick="addToCart('Urbanos KD', 15000)">Añadir al carrito</button>
+            <button class="view-btn" onclick="openProductModal('Urbanos KD', 15000, 'Zapatos urbanos para el día a día', 'Zapatos', 'z70.png')">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Zapato 3 -->
+      <div class="product">
+        <div class="product-badge badge-stock">Pocas unidades</div>
+        <div class="product-image" onclick="openProductModal('Trail Flex', 15000, 'Zapatillas para running con amortiguación', 'Zapatos', 'Shoes02.png')">
+          <img src="Shoes02.png" alt="Trail Flex">
+        </div>
+        <div class="product-info">
+          <h3>Trail Flex</h3>
+          <p>Zapatillas para running con amortiguación</p>
+          <div class="product-price">RD$ 15,000</div>
+          <div class="product-actions">
+            <button class="cart-btn" onclick="addToCart('Trail Flex', 15000)">Añadir al carrito</button>
+            <button class="view-btn" onclick="openProductModal('Trail Flex', 15000, 'Zapatillas para running con amortiguación', 'Zapatos', 'Shoes02.png')">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Zapato 4 -->
+      <div class="product">
+        <div class="product-image" onclick="openProductModal('Botines City', 13000, 'Botines de cuero para look urbano', 'Zapatos', 'Shoes03.png')">
+          <img src="Shoes03.png" alt="Botines City">
+        </div>
+        <div class="product-info">
+          <h3>Botines City</h3>
+          <p>Botines de cuero para look urbano</p>
+          <div class="product-price">RD$ 13,000</div>
+          <div class="product-actions">
+            <button class="cart-btn" onclick="addToCart('Botines City', 13000)">Añadir al carrito</button>
+            <button class="view-btn" onclick="openProductModal('Botines City', 13000, 'Botines de cuero para look urbano', 'Zapatos', 'Shoes03.png')">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Zapato 5 -->
+      <div class="product">
+        <div class="product-badge badge-limited">Limited Edition</div>
+        <div class="product-image" onclick="openProductModal('Zapatillas Cuero', 13000, 'Zapatillas de cuero con estilo clásico', 'Zapatos', 'Shoes01.png')">
+          <img src="Shoes01.png" alt="Zapatillas Cuero">
+        </div>
+        <div class="product-info">
+          <h3>Zapatillas Cuero</h3>
+          <p>Zapatillas de cuero con estilo clásico</p>
+          <div class="product-price">RD$ 13,000</div>
+          <div class="product-actions">
+            <button class="cart-btn" onclick="addToCart('Zapatillas Cuero', 13000)">Añadir al carrito</button>
+            <button class="view-btn" onclick="openProductModal('Zapatillas Cuero', 13000, 'Zapatillas de cuero con estilo clásico', 'Zapatos', 'Shoes01.png')">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Zapato 6 -->
+      <div class="product">
+        <div class="product-image" onclick="openProductModal('Eco Trainers', 13000, 'Zapatillas ecológicas con materiales sostenibles', 'Zapatos', 'Shoes05.png')">
+          <img src="Shoes05.png" alt="Eco Trainers">
+        </div>
+        <div class="product-info">
+          <h3>Eco Trainers</h3>
+          <p>Zapatillas ecológicas con materiales sostenibles</p>
+          <div class="product-price">RD$ 13,000</div>
+          <div class="product-actions">
+            <button class="cart-btn" onclick="addToCart('Eco Trainers', 13000)">Añadir al carrito</button>
+            <button class="view-btn" onclick="openProductModal('Eco Trainers', 13000, 'Zapatillas ecológicas con materiales sostenibles', 'Zapatos', 'Shoes05.png')">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Zapato 7 -->
+      <div class="product">
+        <div class="product-badge badge-stock">Últimas unidades</div>
+        <div class="product-image" onclick="openProductModal('Slides KD', 13000, 'Sandalias deportivas para el verano', 'Zapatos', 'Shoes06.png')">
+          <img src="Shoes06.png" alt="Slides KD">
+        </div>
+        <div class="product-info">
+          <h3>Slides KD</h3>
+          <p>Sandalias deportivas para el verano</p>
+          <div class="product-price">RD$ 13,000</div>
+          <div class="product-actions">
+            <button class="cart-btn" onclick="addToCart('Slides KD', 13000)">Añadir al carrito</button>
+            <button class="view-btn" onclick="openProductModal('Slides KD', 13000, 'Sandalias deportivas para el verano', 'Zapatos', 'Shoes06.png')">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products - Centered -->
+  <section id="destacados">
+    <div class="section-header">
+      <h2>Productos Destacados</h2>
+      <p>Nuestras selecciones más exclusivas y populares de la temporada.</p>
+    </div>
+    <div class="featured-products">
+      <!-- Featured Product 1 -->
+      <div class="product">
+        <div class="product-badge badge-limited">Limited Edition</div>
+        <div class="product-image" onclick="openProductModal('Edición Limitada', 45000, 'Producto exclusivo con detalles únicos', 'Destacados', 'Shoes03.png')">
+          <img src="Shoes03.png" alt="Edición Limitada">
+        </div>
+        <div class="product-info">
+          <h3>Edición Limitada</h3>
+          <p>Producto exclusivo con detalles únicos</p>
+          <div class="product-price">RD$ 45,000</div>
+          <div class="product-actions">
+            <button class="cart-btn" onclick="addToCart('Edición Limitada', 45000)">Añadir al carrito</button>
+            <button class="view-btn" onclick="openProductModal('Edición Limitada', 45000, 'Producto exclusivo con detalles únicos', 'Destacados', 'Shoes03.png')">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Featured Product 2 -->
+      <div class="product">
+        <div class="product-badge badge-stock">Última unidad</div>
+        <div class="product-image" onclick="openProductModal('Bolso Premium', 45000, 'Bolso de diseñador con materiales premium', 'Destacados', 'Purse1.png')">
+          <img src="Purse1.png" alt="Bolso Premium">
+        </div>
+        <div class="product-info">
+          <h3>Bolso Premium</h3>
+          <p>Bolso de diseñador con materiales premium</p>
+          <div class="product-price">RD$ 45,000</div>
+          <div class="product-actions">
+            <button class="cart-btn" onclick="addToCart('Bolso Premium', 45000)">Añadir al carrito</button>
+            <button class="view-btn" onclick="openProductModal('Bolso Premium', 45000, 'Bolso de diseñador con materiales premium', 'Destacados', 'Purse1.png')">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contacto">
+    <div class="section-header">
+      <h2>Contáctanos</h2>
+      <p>Estamos aquí para ayudarte en cualquier consulta o pedido especial.</p>
+    </div>
+    <div class="contact-info">
+      <p><i class="fas fa-map-marker-alt"></i> Bella Vista Mall, 2do nivel y Plaza las Américas II, Santo Domingo, República Dominicana</p>
+      <p><i class="fas fa-phone"></i> 809-549-4893 / 809-533-6310</p>
+      <p><i class="fas fa-envelope"></i> info@kdstore.com</p>
+      
+      <div class="social-links">
+        <a href="https://instagram.com/Donnascick" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://wa.me/8095494893" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="#"><i class="fab fa-pinterest"></i></a>
+      </div>
+      
+      <a class="btn" href="https://wa.me/8095494893" target="_blank">Contactar por WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <a href="#" class="footer-logo"><img src="KDLOGO.PNG" alt="KD Logo" style="height: 50px;"></a>
+      <p>Moda exclusiva. Estilo atemporal. Elegancia sin límites.</p>
+      <div class="copyright">
+        &copy; 2025 KD Store. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Product Detail Modal -->
+  <div class="product-modal" id="productModal">
+    <button class="close-modal" onclick="closeProductModal()">&times;</button>
+    <div class="modal-content">
+      <div class="modal-image">
+        <img id="modalImg" src="" alt="Product Image">
+      </div>
+      <div class="modal-info">
+        <span class="product-badge" id="modalBadge"></span>
+        <h3 id="modalTitle"></h3>
+        <div class="modal-price" id="modalPrice"></div>
+        <p class="modal-description" id="modalDescription"></p>
+        
+        <div class="modal-stats">
+          <div class="stat-item">
+            <i class="fas fa-tag"></i> Categoría: <span id="modalCategory"></span>
+          </div>
+          <div class="stat-item">
+            <i class="fas fa-box"></i> Envío gratuito
+          </div>
+          <div class="stat-item">
+            <i class="fas fa-undo"></i> Devoluciones en 30 días
+          </div>
+        </div>
+        
+        <div class="modal-actions">
+          <button class="btn" id="modalAddToCart" onclick="addToCartFromModal()">Añadir al carrito</button>
+          <button class="btn" style="background: #333;" onclick="closeProductModal()">Seguir comprando</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Modal -->
+  <div id="cartModal">
+    <div class="cart-header">
+      <h3>Tu Carrito</h3>
+      <button class="close-cart" onclick="closeCart()">&times;</button>
+    </div>
+    
+    <div class="cart-items" id="cartItems">
+      <!-- Cart items will be added here dynamically -->
+    </div>
+    
+    <div class="cart-total">
+      <span>Total:</span>
+      <span>RD$ <span id="cartTotal">0.00</span></span>
+    </div>
+    
+    <button class="checkout-btn" id="checkoutBtn">Finalizar Compra</button>
+  </div>
+
+  <!-- Notification -->
+  <div class="notification" id="notification">
+    <i class="fas fa-check-circle"></i>
+    <span id="notificationText">Producto añadido al carrito!</span>
+  </div>
+
+  <script>
+    // Initialize cart
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let currentProduct = null;
+    
+    // Update cart counter
+    function updateCartCounter() {
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById('cartCounter').textContent = totalItems;
+    }
+    
+    // Show notification
+    function showNotification(message) {
+      const notification = document.getElementById('notification');
+      notification.querySelector('#notificationText').textContent = message;
+      notification.classList.add('show');
+      
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 3000);
+    }
+    
+    // Add to cart
+    function addToCart(name, price) {
+      const existingItem = cart.find(item => item.name === name);
+      
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({ name, price, quantity: 1 });
+      }
+      
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCounter();
+      showNotification(`${name} añadido al carrito`);
+    }
+    
+    // Add to cart from modal
+    function addToCartFromModal() {
+      if (currentProduct) {
+        addToCart(currentProduct.name, currentProduct.price);
+      }
+    }
+    
+    // Open product modal
+    function openProductModal(name, price, description, category, imgSrc) {
+      currentProduct = { name, price, description, category, imgSrc };
+      const modal = document.getElementById('productModal');
+      const modalImg = document.getElementById('modalImg');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalPrice = document.getElementById('modalPrice');
+      const modalDescription = document.getElementById('modalDescription');
+      const modalCategory = document.getElementById('modalCategory');
+      const modalBadge = document.getElementById('modalBadge');
+      
+      // Set product data
+      modalTitle.textContent = name;
+      modalPrice.textContent = `RD$ ${price.toLocaleString('es-DO')}`;
+      modalDescription.textContent = description;
+      modalCategory.textContent = category;
+      
+      // Set the actual image source
+      modalImg.src = imgSrc;
+      modalImg.alt = name;
+      
+      // Set badge if needed
+      if (name.includes('Premium') || name.includes('Limited') || name.includes('Edición')) {
+        modalBadge.textContent = 'Limited Edition';
+        modalBadge.className = 'product-badge badge-limited';
+        modalBadge.style.display = 'inline-block';
+      } else if (name.includes('Última') || name.includes('Pocas')) {
+        modalBadge.textContent = 'Últimas unidades';
+        modalBadge.className = 'product-badge badge-stock';
+        modalBadge.style.display = 'inline-block';
+      } else {
+        modalBadge.style.display = 'none';
+      }
+      
+      // Show modal
+      modal.style.display = 'flex';
+    }
+    
+    // Close product modal
+    function closeProductModal() {
+      document.getElementById('productModal').style.display = 'none';
+    }
+    
+    // Open cart
+    function openCart() {
+      const modal = document.getElementById("cartModal");
+      const items = document.getElementById("cartItems");
+      const checkoutBtn = document.getElementById("checkoutBtn");
+      const cartTotal = document.getElementById("cartTotal");
+    
+      if (cart.length === 0) {
+        items.innerHTML = "<p style='text-align: center; padding: 30px;'>Tu carrito está vacío</p>";
+        checkoutBtn.style.display = "none";
+        cartTotal.textContent = "0.00";
+      } else {
+        let html = "";
+        let total = 0;
+        let message = "Hola KD Store, quiero pedir:\n";
+    
+        cart.forEach((item) => {
+          const itemTotal = item.price * item.quantity;
+          total += itemTotal;
+          message += `• ${item.name} (x${item.quantity}) - RD$ ${itemTotal.toLocaleString('es-DO')}\n`;
+          
+          // Determine image based on product name
+          let imgSrc = 'Purse1.png';
+          if (item.name.includes('Tennis') || item.name.includes('Zapatos')) {
+            imgSrc = 'Shoes01.png';
+          } else if (item.name.includes('Urbanos')) {
+            imgSrc = 'Shoes02.png';
+          } else if (item.name.includes('Trail')) {
+            imgSrc = 'Shoes03.png';
+          } else if (item.name.includes('Botines')) {
+            imgSrc = 'Shoes04.png';
+          } else if (item.name.includes('Cuero')) {
+            imgSrc = 'Shoes05.png';
+          } else if (item.name.includes('Eco')) {
+            imgSrc = 'Shoes06.png';
+          } else if (item.name.includes('Slides')) {
+            imgSrc = 'Shoes06.png';
+          } else if (item.name.includes('Edición')) {
+            imgSrc = 'Shoes06.png';
+          }
+          
+          html += `
+            <div class="cart-item">
+              <div class="cart-item-image">
+                <img src="${imgSrc}" alt="${item.name}">
+              </div>
+              <div class="cart-item-details">
+                <div class="cart-item-name">${item.name}</div>
+                <div class="cart-item-price">RD$ ${item.price.toLocaleString('es-DO')} x ${item.quantity}</div>
+              </div>
+              <button class="cart-item-remove" onclick="removeFromCart('${item.name}')">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          `;
+        });
+    
+        message += `\nTotal: RD$ ${total.toLocaleString('es-DO')}`;
+        cartTotal.textContent = total.toLocaleString('es-DO');
+    
+        items.innerHTML = html;
+        const encodedMsg = encodeURIComponent(message);
+        checkoutBtn.onclick = function() {
+          window.location.href = `https://wa.me/8095494893?text=${encodedMsg}`;
+        };
+        checkoutBtn.style.display = "block";
+      }
+    
+      modal.style.display = "block";
+    }
+    
+    // Close cart
+    function closeCart() {
+      document.getElementById("cartModal").style.display = "none";
+    }
+    
+    // Remove from cart
+    function removeFromCart(name) {
+      cart = cart.filter(item => item.name !== name);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCounter();
+      openCart(); // Refresh cart view
+    }
+    
+    // Toggle menu for mobile
+    function toggleMenu() {
+      const nav = document.querySelector('nav ul');
+      nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+    }
+    
+    // Close modals when clicking outside
+    document.addEventListener('click', function(event) {
+      const productModal = document.getElementById('productModal');
+      const cartModal = document.getElementById('cartModal');
+      
+      if (productModal.style.display === 'flex' && 
+          !productModal.contains(event.target) && 
+          !event.target.classList.contains('view-btn') && 
+          !event.target.classList.contains('fa-eye')) {
+        closeProductModal();
+      }
+      
+      if (cartModal.style.display === 'block' && 
+          !cartModal.contains(event.target) && 
+          !event.target.classList.contains('cart-icon') && 
+          !event.target.classList.contains('fa-shopping-bag') &&
+          !event.target.classList.contains('cart-counter')) {
+        closeCart();
+      }
+    });
+    
+    // Initialize cart counter
+    updateCartCounter();
+  </script>
+</body>
+</html>
