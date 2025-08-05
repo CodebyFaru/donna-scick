@@ -964,7 +964,7 @@
       <!-- Bolso 8 -->
       <div class="product">
         <div class="product-badge badge-limited">Limited Edition</div>
-        <div class="product-image" onclick="openProductModal('Bolso Elegante', 45000, 'Bolso de cuero italiano con detalles dorados', 'Bolsos', 'Purse90.png')">
+        <div class="product-image" onclick="openProductModal('Bolso Elegante', 45000, 'Bolso de cuero italiano con detalles dorados', 'Bolsos', 'purse90.png')">
           <img src="purse90.png" alt="Bolso Elegante">
         </div>
         <div class="product-info">
@@ -1396,7 +1396,7 @@
                 <div class="cart-item-name">${item.name}</div>
                 <div class="cart-item-price">RD$ ${item.price.toLocaleString('es-DO')} x ${item.quantity}</div>
               </div>
-              <button class="cart-item-remove" onclick="removeFromCart('${item.name}')">
+              <button class="cart-item-remove" onclick="removeFromCart('${item.name}', event)">
                 <i class="fas fa-times"></i>
               </button>
             </div>
@@ -1422,8 +1422,11 @@
       document.getElementById("cartModal").style.display = "none";
     }
     
-    // Remove from cart
-    function removeFromCart(name) {
+    // Remove from cart - FIXED: Added event parameter and stopPropagation
+    function removeFromCart(name, event) {
+      // Prevent the event from bubbling up
+      event.stopPropagation();
+      
       cart = cart.filter(item => item.name !== name);
       localStorage.setItem('cart', JSON.stringify(cart));
       updateCartCounter();
